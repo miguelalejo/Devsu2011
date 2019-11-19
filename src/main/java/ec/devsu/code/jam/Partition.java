@@ -5,16 +5,36 @@ package ec.devsu.code.jam;
  */
 public class Partition {
     public int countPartitions(int number) {
-        int numberoParticiones = 1;
-        for (int i = number - 1; i > 0; i--) {
-            int numberBase = i;
-            int diferencia = number - numberBase;
-            while (diferencia > 0){
-                numberoParticiones++;
-                diferencia--;
+        number--;
+        if (number == 0) {
+            return 0;
+        }
+        if (number == 1) {
+            return 1;
+        }
+        int particiones = 0;
+        for (int i = 0; i < number; i++) {
+            for (int j = 0; j < number; j++) {
+                if (number >= i) {
+                    particiones = countPartitions(number) + countPartitions(i);
+                }
+            }
+            if (number >= i) {
+                particiones = countPartitions(number) + countPartitions(i);
             }
         }
+
         return numberoParticiones;
+    }
+
+    int countLeaves(treePtr rootPtr) {
+        if (rootPtr == NULL)
+            return 0;
+        if (rootPtr -> right == NULL && rootPtr -> left == NULL)
+            return 1;
+        int leftCount = countLeaves(rootPtr -> left);
+        int rightCount = countLeaves(rootPtr -> right);
+        return leftCount + rightCount;
     }
 
 }
