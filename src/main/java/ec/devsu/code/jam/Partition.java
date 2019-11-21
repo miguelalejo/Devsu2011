@@ -1,40 +1,50 @@
 package ec.devsu.code.jam;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Partition
  */
 public class Partition {
     public int countPartitions(int number) {
-        number--;
-        if (number == 0) {
-            return 0;
-        }
-        if (number == 1) {
-            return 1;
-        }
-        int particiones = 0;
-        for (int i = 0; i < number; i++) {
-            for (int j = 0; j < number; j++) {
-                if (number >= i) {
-                    particiones = countPartitions(number) + countPartitions(i);
+        List<int[]> listNumbers = new ArrayList<int[]>();
+        for (int i = number; i >= 0;) {
+
+            int[] partition = new int[number];
+            partition[0] = i;
+            int k = 1;            
+            int index = 0;
+            do {
+                index = number - sum(partition);
+                while (!esMenorIgual(partition, index)) {
+                    index--;
                 }
-            }
-            if (number >= i) {
-                particiones = countPartitions(number) + countPartitions(i);
-            }
+                partition[k] = index;
+                k++;
+            } while (sum(partition) <= number);
+            i--;
+            listNumbers.add(partition);
         }
 
-        return numberoParticiones;
+        return 0;
     }
 
-    int countLeaves(treePtr rootPtr) {
-        if (rootPtr == NULL)
-            return 0;
-        if (rootPtr -> right == NULL && rootPtr -> left == NULL)
-            return 1;
-        int leftCount = countLeaves(rootPtr -> left);
-        int rightCount = countLeaves(rootPtr -> right);
-        return leftCount + rightCount;
+    public int sum(int[] numbers) {
+        int sum = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            sum += numbers[i];
+        }
+        return sum;
+    }
+
+    public boolean esMenorIgual(int[] numbers, int number) {
+        for (int i = 0; i < numbers.length; i++) {
+            if (number > numbers[i] && numbers[i] != 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
