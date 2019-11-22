@@ -11,23 +11,25 @@ public class PartitionTest {
 
     Partition partition = new Partition();
 
-    @Test
-    void shoudlBeOne() {
-        assertEquals(1, partition.countPartitions(1));
+    @Test    
+    void t1() {
+        assertEquals(1, partition.partions(1));
     }
 
-    @Test
-    void shoudlBeTwo() {
-        assertEquals(2, partition.countPartitions(2));
+    
+    @Test    
+    void t2() {
+        assertEquals(0, partition.partions(0));
     }
 
-    @Test
-    void shoudlBeThree() {
-        assertEquals(3, partition.countPartitions(3));
+    @Test    
+    void t3() {
+        assertEquals(3, partition.partions(3));
     }
 
+    
     @Test
     void shoudlBeFive() {
-        assertEquals(5, partition.countPartitions(4));
+        assertEquals(5, partition.partions(4));
     }
 }

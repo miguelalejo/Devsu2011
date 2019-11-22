@@ -15,17 +15,16 @@ public class LowerCaseTest {
     LowerCase lowerCase = new LowerCase();
 
     @Test
-    void shouldBeValid(){
-        String textUpper="AZÁÉÍÓÚÑ";
-        String textLower="azáéíóúñ";
-        for(int i=0;i<textUpper.length();i++){
-            int up=textUpper.charAt(i);
-            int low=textLower.charAt(i);
-            LOG.info(up+","+low);      
-            
-            //65-90            
-            //193-222
+    void shouldBeValid() {
+        String textUpper = "AZÁÉÍÓÚÑ";
+        String textLower = "azáéíóúñ";
+        for (int i = 0; i < textUpper.length(); i++) {
+            int up = textUpper.charAt(i);
+            int low = textLower.charAt(i);
+            LOG.info(up);
+            LOG.info(low);
         }
+    }
 
     @Test
     void shouldBeValidConversionMainLetters() {
